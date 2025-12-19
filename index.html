@@ -17,3 +17,79 @@
             <div id="output" class="output-section"></div>
         </div>
     </div>
+    <script>
+        const topicInput = document.getElementById("topic");
+        const generateBtn = document.getElementById("generateBtn");
+        const output = document.getElementById("output");
+      
+        const studyData = {
+          "machine learning": {
+            definition: "Machine learning is a field of AI that allows computers to learn from data and improve without being explicitly programmed.",
+            points: [
+              "Uses algorithms to identify patterns in data",
+              "Commonly used in recommendation systems",
+              "Powers image and speech recognition",
+              "Improves performance over time",
+              "Used in healthcare, finance, and marketing"
+            ],
+            terms: ["Algorithm", "Model", "Training Data", "Prediction"]
+          },
+      
+          "photosynthesis": {
+            definition: "Photosynthesis is the process by which green plants make their own food using sunlight.",
+            points: [
+              "Occurs in chloroplasts of plant cells",
+              "Uses sunlight, carbon dioxide, and water",
+              "Produces glucose and oxygen",
+              "Essential for life on Earth",
+              "Forms the base of the food chain"
+            ],
+            terms: ["Chlorophyll", "Glucose", "Carbon Dioxide", "Oxygen"]
+          },
+      
+          "operating system": {
+            definition: "An operating system is system software that manages computer hardware and software resources.",
+            points: [
+              "Acts as an interface between user and hardware",
+              "Manages memory and processes",
+              "Controls input and output devices",
+              "Ensures security and access control",
+              "Examples include Windows, Linux, macOS"
+            ],
+            terms: ["Kernel", "Process", "Memory", "File System"]
+          }
+        };
+      
+        generateBtn.addEventListener("click", () => {
+          const topic = topicInput.value.trim().toLowerCase();
+      
+          if (!topic) {
+            output.innerHTML = "<p>Please enter a topic.</p>";
+            return;
+          }
+      
+          if (!studyData[topic]) {
+            output.innerHTML = `
+              <p><strong>No data found for "${topic}".</strong></p>
+              <p>Try: machine learning, photosynthesis, operating system</p>
+            `;
+            return;
+          }
+      
+          const data = studyData[topic];
+      
+          output.innerHTML = `
+            <h3>Definition</h3>
+            <p>${data.definition}</p>
+      
+            <h3>Key Points</h3>
+            <ul>
+              ${data.points.map(point => `<li>${point}</li>`).join("")}
+            </ul>
+      
+            <h3>Key Terms</h3>
+            <p>${data.terms.join(", ")}</p>
+          `;
+        });
+      </script>
+      
